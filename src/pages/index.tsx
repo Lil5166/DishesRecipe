@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Card, CardContent, CardMedia, Collapse } from '@mui/material';
-import { StaticRouter } from 'react-router';
+import React, {useEffect, useState} from 'react';
+import {Grid, Typography, Card, CardContent, CardMedia, Collapse} from '@mui/material';
+import {StaticRouter, Link} from 'react-router-dom';
 import usePagination from '@/hooks/usePagination';
-import { getAllRecipes } from '@/lib/api/api';
+import {getAllRecipes} from '@/lib/api/api';
 import styles from '@/styles/RecipeCard.module.css';
 
 export const RecipeList: React.FC = () => {
     const [recipes, setRecipes] = useState([]);
-    const { currentPage, paginate, startIndex, endIndex } = usePagination(10);
+    const {currentPage, paginate, startIndex, endIndex} = usePagination(10);
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -43,9 +43,17 @@ export const RecipeList: React.FC = () => {
                                 className={styles.image}
                             />
 
-                            <CardContent>
+                            <CardContent className={styles.card}>
                                 <Typography variant="h6" className={styles.recipeTitle}>
-                                    {recipe.strMeal}
+                                    Назва страви: {recipe.strMeal}
+                                </Typography>
+                                {recipe.strTags && (
+                                    <Typography variant="h6" className={styles.recipeTitle}>
+                                        Теги: {recipe.strTags}
+                                    </Typography>
+                                )}
+                                <Typography variant="h1" className={styles.recipeTitle}>
+                                    Категорія: {recipe.strCategory}
                                 </Typography>
                                 <Collapse in={expandedRecipeId === recipe.idMeal} timeout="auto" unmountOnExit>
                                     <Typography variant="body2" color="textSecondary" className={styles.instructions}>
@@ -53,12 +61,9 @@ export const RecipeList: React.FC = () => {
                                     </Typography>
                                 </Collapse>
                                 <div className={styles.buttonContainer}>
-                                    <button
-                                        onClick={() => handleExpandRecipe(recipe.idMeal)}
-                                        className={styles.button}
-                                    >
-                                        {expandedRecipeId === recipe.idMeal ? 'Згорнути' : 'Подивитися рецепт'}
-                                    </button>
+                                    <Link to={`/recipes/${recipe.idMeal}`} className={styles.button}>
+                                        Подивитися рецепт
+                                    </Link>
                                 </div>
                             </CardContent>
                         </Card>
@@ -66,7 +71,7 @@ export const RecipeList: React.FC = () => {
                 ))}
                 <Grid item xs={12}>
                     <div className={styles.paginationContainer}>
-                        {Array.from({ length: Math.ceil(recipes.length / 10) }).map((_, index) => (
+                        {Array.from({length: Math.ceil(recipes.length / 10)}).map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => paginate(index + 1)}
@@ -82,4 +87,4 @@ export const RecipeList: React.FC = () => {
     );
 };
 
-export default RecipeList
+export default RecipeList;
