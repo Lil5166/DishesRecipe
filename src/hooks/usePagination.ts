@@ -1,5 +1,4 @@
-// hooks/usePagination.ts
-import { useState, useContext} from 'react';
+import { useState} from 'react';
 
 const usePagination = (itemsPerPage: number) => {
     const [currentPage, setCurrentPage] = useState(1);
