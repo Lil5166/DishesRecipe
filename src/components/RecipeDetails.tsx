@@ -1,27 +1,15 @@
-import { NextPage } from 'next';
-import { Typography, Grid } from '@mui/material';
+import {NextPage} from 'next';
+import {Typography, Grid} from '@mui/material';
 import styles from '@/styles/RecipeDetails.module.css';
-
-interface Recipe {
-    idMeal: string;
-    strMeal: string;
-    strMealThumb: string;
-    strTags?: string;
-    strCategory: string;
-    strInstructions: string;
-    strIngredient1: string;
-    strIngredient2: string;
-    strIngredient3: string;
-    strYoutube: string;
-}
+import {Recipe} from "@/types/Recipe";
 
 export interface RecipeDetailsProps {
     recipe: Recipe;
 }
 
-const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
-    return (
-        <Grid container spacing={2} className={styles.container}>
+
+const RecipeDetails: NextPage<RecipeDetailsProps> = ({recipe}) => {
+    return (<Grid container spacing={2} className={styles.container}>
             <Grid item xs={12}>
                 <Typography variant="h4" className={styles.title}>
                     {recipe.strMeal}
@@ -56,11 +44,16 @@ const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
                     <li>{recipe.strIngredient1}</li>
                     <li>{recipe.strIngredient2}</li>
                     <li>{recipe.strIngredient3}</li>
-                    {/* Додайте решту інгредієнтів тут */}
+                    <li>{recipe.strIngredient4}</li>
+                    <li>{recipe.strIngredient5}</li>
+                    <li>{recipe.strIngredient6}</li>
+                    <li>{recipe.strIngredient7}</li>
+                    <li>{recipe.strIngredient8}</li>
+                    <li>{recipe.strIngredient9}</li>
+                    <li>{recipe.strIngredient10}</li>
                 </ul>
             </Grid>
         </Grid>
     );
 };
-
-export default RecipeDetails;
+export default RecipeDetails

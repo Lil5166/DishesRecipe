@@ -1,8 +1,10 @@
+import React from 'react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import RecipeList from '@/components/RecipeList';
-import RecipeDetails from '@/components/RecipeDetails';
+import RecipeDetails from "@/components/RecipeDetails";
 
-const HomePage: React.FC = () => {
+const HomePage: NextPage = () => {
     const router = useRouter();
 
     return (
