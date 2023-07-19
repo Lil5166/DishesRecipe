@@ -1,32 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getRecipeById } from '@/lib/api/api';
+import { NextPage } from 'next';
+import { Typography, Grid } from '@mui/material';
+import styles from '@/styles/RecipeDetails.module.css';
 
-const RecipeDetails: React.FC = () => {
-    const { recipeId } = useParams<{ recipeId: string }>();
-    const [recipe, setRecipe] = useState<any>(null);
+interface Recipe {
+    idMeal: string;
+    strMeal: string;
+    strMealThumb: string;
+    strTags?: string;
+    strCategory: string;
+    strInstructions: string;
+    strIngredient1: string;
+    strIngredient2: string;
+    strIngredient3: string;
+    strYoutube: string;
+}
 
-    useEffect(() => {
-        const fetchRecipe = async () => {
-            const fetchedRecipe = await getRecipeById(recipeId);
-            setRecipe(fetchedRecipe);
-        };
-        fetchRecipe();
-    }, [recipeId]);
+export interface RecipeDetailsProps {
+    recipe: Recipe;
+}
 
-    if (!recipe) {
-        return <div>Loading...</div>;
-    }
-
+const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
     return (
-        <div>
-            <h1>{recipe.strMeal}</h1>
-            <iframe width="560" height="315" src={recipe.strYoutube} title={recipe.strMeal} allowFullScreen></iframe>
-            <p>Tags: {recipe.strTags}</p>
-            <p>Category: {recipe.strCategory}</p>
-            <p>Instructions: {recipe.strInstructions}</p>
-            <p>Ingredients: {recipe.strIngredient1}, {recipe.strIngredient2}, {recipe.strIngredient3}, ...</p>
-        </div>
+        <Grid container spacing={2} className={styles.container}>
+            <Grid item xs={12}>
+                <Typography variant="h4" className={styles.title}>
+                    {recipe.strMeal}
+                </Typography>
+            </Grid>
+            <Grid item xs={12} className={styles.youtubeWrapper}>
+                <iframe className={styles.youtubeFrame} src="https://www.youtube.com/embed/gtQSr18yQz0"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen></iframe>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="body1" className={styles.tags}>
+                    Tags: {recipe.strTags}
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="body1" className={styles.category}>
+                    Category: {recipe.strCategory}
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="body1" className={styles.instructions}>
+                    Instructions: {recipe.strInstructions}
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="body1" className={styles.ingredients}>
+                    Ingredients:
+                </Typography>
+                <ul className={styles.ingredientsList}>
+                    <li>{recipe.strIngredient1}</li>
+                    <li>{recipe.strIngredient2}</li>
+                    <li>{recipe.strIngredient3}</li>
+                    {/* Додайте решту інгредієнтів тут */}
+                </ul>
+            </Grid>
+        </Grid>
     );
 };
 
