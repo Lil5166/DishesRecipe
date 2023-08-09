@@ -11,9 +11,5 @@ export interface Recipe {
     strIngredient4: string;
     strIngredient5: string;
     strIngredient6: string;
-    strIngredient7: string;
-    strIngredient8: string;
-    strIngredient9: string;
-    strIngredient10: string;
     strYoutube: string;
 }

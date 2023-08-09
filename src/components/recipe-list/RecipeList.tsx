@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, TextField, InputAdornment } from '@mui/material';
 import usePagination from '@/hooks/usePagination';
 import { getAllRecipes } from '@/lib/api/api';
-import RecipeCard from "@/components/RecipeCard";
-import styles from '@/styles/RecipeCard.module.css';
+import RecipeCard from "@/components/recipe-card/RecipeCard";
+import styles from './RecipeList.module.css';
 
 const RecipeList: NextPage = () => {
     const [recipes, setRecipes] = useState([]);
     const { paginate, startIndex, endIndex } = usePagination(10);
 
+    const [isCardClicked, setIsCardClicked] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchRecipes = async () => {
+        const allRecipes = await getAllRecipes();
+        setRecipes(allRecipes);
+    }
+
     useEffect(() => {
-        const fetchRecipes = async () => {
-            const allRecipes = await getAllRecipes();
-            setRecipes(allRecipes);
-        };
         fetchRecipes();
     }, []);
 
     const currentRecipes = recipes.slice(startIndex, endIndex);
 
     return (
-        <div>
+        <div className={styles.container}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography variant="h1" align="center" className={styles.title}>
@@ -29,8 +33,22 @@ const RecipeList: NextPage = () => {
                     </Typography>
                 </Grid>
                 {currentRecipes.map((recipe: any) => (
-                    <Grid item xs={12} key={recipe.idMeal}>
-                        <RecipeCard recipe={recipe} />
+                    <Grid item xs={12} sm={6} md={4} key={recipe.idMeal}>
+                        <div
+                            className={`${styles.card} ${isCardClicked ? styles.active : ''} ${isLoading ? styles.loading : ''}`}
+                            onClick={() => {
+                                setIsCardClicked(true);
+                                setIsLoading(true);
+                            }}
+                        >
+                            <RecipeCard
+                                strMeal={recipe.strMeal}
+                                strMealThumb={recipe.strMealThumb}
+                                strCategory={recipe.strCategory}
+                                strTags={recipe.strTags}
+                                idMeal={recipe.idMeal}
+                            />
+                        </div>
                     </Grid>
                 ))}
                 <Grid item xs={12}>

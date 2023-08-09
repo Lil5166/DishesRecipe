@@ -1,11 +1,23 @@
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import {getAllRecipes, getRecipeById} from '@/lib/api/api';
-import RecipeDetails, { RecipeDetailsProps } from '@/components/RecipeDetails';
-import {Recipe} from "@/types/Recipe";
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { getAllRecipes, getRecipeById } from '@/lib/api/api';
+import RecipeDetails from "@/components/recipe-details/RecipeDetails";
+import { Recipe } from "@/types/Recipe";
+
+interface RecipePageProps {
+    recipe: Recipe;
+}
+
+const RecipePage: NextPage<RecipePageProps> = ({ recipe }) => {
+    return (
+        <div>
+            <RecipeDetails recipe={recipe} />
+        </div>
+    );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const allRecipes = await getAllRecipes();
-    const paths = allRecipes.map((recipe : Recipe) => ({
+    const paths = allRecipes.map((recipe: Recipe) => ({
         params: { recipeId: recipe.idMeal },
     }));
 
@@ -15,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps<RecipeDetailsProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<RecipePageProps> = async ({ params }) => {
     const recipeId = params?.recipeId as string;
 
     if (!recipeId) {
@@ -38,14 +50,6 @@ export const getStaticProps: GetStaticProps<RecipeDetailsProps> = async ({ param
         },
         revalidate: 60,
     };
-};
-
-const RecipePage: NextPage<RecipeDetailsProps> = ({ recipe }) => {
-    return (
-        <div>
-            <RecipeDetails recipe={recipe} />
-        </div>
-    );
 };
 
 export default RecipePage;
