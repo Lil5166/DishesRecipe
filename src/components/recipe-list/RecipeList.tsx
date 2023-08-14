@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
-import { Grid, Typography, TextField, InputAdornment } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import usePagination from '@/hooks/usePagination';
 import { getAllRecipes } from '@/lib/api/api';
 import RecipeCard from "@/components/recipe-card/RecipeCard";
 import styles from './RecipeList.module.css';
+import RecipeHeader from "@/components/recipe-header";
 
 const RecipeList: NextPage = () => {
     const [recipes, setRecipes] = useState([]);
@@ -26,12 +27,8 @@ const RecipeList: NextPage = () => {
 
     return (
         <div className={styles.container}>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Typography variant="h1" align="center" className={styles.title}>
-                        All Recipes
-                    </Typography>
-                </Grid>
+            <RecipeHeader />
+            <Grid container spacing={3} className={styles.gridContainer}>
                 {currentRecipes.map((recipe: any) => (
                     <Grid item xs={12} sm={6} md={4} key={recipe.idMeal}>
                         <div
@@ -52,17 +49,19 @@ const RecipeList: NextPage = () => {
                     </Grid>
                 ))}
                 <Grid item xs={12}>
-                    <div className={styles.paginationContainer}>
-                        {Array.from({ length: Math.ceil(recipes.length / 10) }).map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => paginate(index + 1)}
-                                className={styles.paginationButton}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
-                    </div>
+                    <Box display="flex" justifyContent="center" alignItems="center">
+                        <div className={styles.paginationContainer}>
+                            {Array.from({ length: Math.ceil(recipes.length / 10) }).map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => paginate(index + 1)}
+                                    className={styles.paginationButton}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                    </Box>
                 </Grid>
             </Grid>
         </div>

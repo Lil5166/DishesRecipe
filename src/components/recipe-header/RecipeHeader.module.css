@@ -1,0 +1,43 @@
+
+.header {
+    background-color: #ffffff;
+    color: white;
+    padding: 8px 16px;
+    position: relative;
+}
+
+
+.menuButton {
+    margin-right: 16px;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+
+.searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.searchInput:focus {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dishesRecipe {
+    color: black;
+    margin-right: 16px;
+}

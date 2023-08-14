@@ -9,9 +9,7 @@ interface RecipePageProps {
 
 const RecipePage: NextPage<RecipePageProps> = ({ recipe }) => {
     return (
-        <div>
             <RecipeDetails recipe={recipe} />
-        </div>
     );
 };
 
@@ -29,13 +27,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<RecipePageProps> = async ({ params }) => {
     const recipeId = params?.recipeId as string;
-
-    if (!recipeId) {
-        return {
-            notFound: true,
-        };
-    }
-
     const fetchedRecipe = await getRecipeById(recipeId);
 
     if (!fetchedRecipe) {
