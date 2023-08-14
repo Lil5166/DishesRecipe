@@ -11,7 +11,9 @@ interface RecipeDetailsProps {
 }
 
 const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
-
+    const formatTags = (tags: string) => {
+        return tags.split(',').map(item => item.trim()).join(', ');
+    };
 
     return (
         <Grid container spacing={2} className={styles.container}>
@@ -31,7 +33,7 @@ const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
             </Grid>
             <Grid item xs={12} className={styles.infoBox}>
                 <Typography variant="body1" className={styles.tags}>
-                    Tags: {recipe?.strTags || 'No Tags'}
+                    Tags: {recipe?.strTags ? formatTags(recipe.strTags) : 'No Tags'}
                 </Typography>
             </Grid>
             <Grid item xs={12} className={styles.infoBox}>
