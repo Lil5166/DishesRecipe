@@ -4,7 +4,7 @@ import styles from '@/components/recipe-details/RecipeDetails.module.css';
 import { Recipe } from '@/types/Recipe';
 import { Ingredient } from '@/types/Ingredient';
 import Link from 'next/link';
-import {useState} from "react";
+import { useState } from 'react';
 
 interface RecipeDetailsProps {
     recipe: Recipe & Ingredient;
@@ -57,27 +57,26 @@ const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
                     Ingredients:
                 </Typography>
                 <ul className={styles.ingredientsList}>
-                    {Object.keys(recipe).map((key) => {
-                        if (key.includes('strIngredient') && recipe[key as keyof Ingredient]) {
-                            const ingredient = recipe[key as keyof Ingredient] as string;
-                            return (
-                                <li
-                                    key={key}
-                                    className={styles.ingredient}
-                                    onClick={() => handleIngredientToggle(ingredient)}
-                                >
-                                    <input
-                                        type="checkbox"
-                                        className={styles.ingredientCheckbox}
-                                        checked={checkedIngredients.includes(ingredient)}
-                                        readOnly
-                                    />
-                                    <label className={styles.ingredientLabel}>{ingredient}</label>
-                                </li>
-                            );
-                        }
-                        return null;
-                    })}
+                    {recipe?.strIngredient1 && <li>{recipe.strIngredient1}</li>}
+                    {recipe?.strIngredient2 && <li>{recipe.strIngredient2}</li>}
+                    {recipe?.strIngredient3 && <li>{recipe.strIngredient3}</li>}
+                    {recipe?.strIngredient4 && <li>{recipe.strIngredient4}</li>}
+                    {recipe?.strIngredient5 && <li>{recipe.strIngredient5}</li>}
+                    {recipe?.strIngredient6 && <li>{recipe.strIngredient6}</li>}
+                    {recipe?.strIngredient7 && <li>{recipe.strIngredient7}</li>}
+                    {recipe?.strIngredient8 && <li>{recipe.strIngredient8}</li>}
+                    {recipe?.strIngredient9 && <li>{recipe.strIngredient9}</li>}
+                    {recipe?.strIngredient10 && <li>{recipe.strIngredient10}</li>}
+                    {recipe?.strIngredient11 && <li>{recipe.strIngredient11}</li>}
+                    {recipe?.strIngredient12 && <li>{recipe.strIngredient12}</li>}
+                    {recipe?.strIngredient13 && <li>{recipe.strIngredient13}</li>}
+                    {recipe?.strIngredient14 && <li>{recipe.strIngredient14}</li>}
+                    {recipe?.strIngredient15 && <li>{recipe.strIngredient15}</li>}
+                    {recipe?.strIngredient16 && <li>{recipe.strIngredient16}</li>}
+                    {recipe?.strIngredient17 && <li>{recipe.strIngredient17}</li>}
+                    {recipe?.strIngredient18 && <li>{recipe.strIngredient18}</li>}
+                    {recipe?.strIngredient19 && <li>{recipe.strIngredient19}</li>}
+                    {recipe?.strIngredient20 && <li>{recipe.strIngredient20}</li>}
                 </ul>
             </Grid>
             <Grid item xs={12} className={styles.buttonContainer}>
