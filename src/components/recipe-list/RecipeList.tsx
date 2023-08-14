@@ -6,6 +6,7 @@ import { getAllRecipes } from '@/lib/api/api';
 import RecipeCard from "@/components/recipe-card/RecipeCard";
 import styles from './RecipeList.module.css';
 import RecipeHeader from "@/components/recipe-header";
+import {Recipe} from "@/types/Recipe";
 
 const RecipeList: NextPage = () => {
     const [recipes, setRecipes] = useState([]);
@@ -29,7 +30,7 @@ const RecipeList: NextPage = () => {
         <div className={styles.container}>
             <RecipeHeader />
             <Grid container spacing={3} className={styles.gridContainer}>
-                {currentRecipes.map((recipe: any) => (
+                {currentRecipes.map((recipe: Recipe) => (
                     <Grid item xs={12} sm={6} md={4} key={recipe.idMeal}>
                         <div
                             className={`${styles.card} ${isCardClicked ? styles.active : ''} ${isLoading ? styles.loading : ''}`}

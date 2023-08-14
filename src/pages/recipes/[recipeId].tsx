@@ -9,9 +9,7 @@ interface RecipePageProps {
 
 const RecipePage: NextPage<RecipePageProps> = ({ recipe }) => {
     return (
-        <div>
             <RecipeDetails recipe={recipe} />
-        </div>
     );
 };
 

@@ -11,11 +11,9 @@ interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ strMeal, strMealThumb, strTags, strCategory, idMeal }) => {
-    console.log(RecipeCard);
 
     return (
-        <Link href={`/recipes/${idMeal}`}>
-            <div className={styles.cardLink}>
+        <Link href={`/recipes/${idMeal}`}  className={styles.cardLink}>
                 <Card className={styles.card}>
                     <CardMedia component="img" src={strMealThumb} alt={strMeal} className={styles.image} />
 
@@ -33,7 +31,6 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ strMeal, strMealThumb, strTags,
                         </Typography>
                     </CardContent>
                 </Card>
-            </div>
         </Link>
     );
 };

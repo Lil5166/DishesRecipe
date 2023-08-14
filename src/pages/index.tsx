@@ -7,7 +7,7 @@ import {getRecipeById} from '@/lib/api/api';
 import {Recipe} from "@/types/Recipe";
 
 interface RecipePageProps {
-    recipe: Recipe | null;
+    recipe: Recipe;
 }
 
 const HomePage: NextPage<RecipePageProps> = ({recipe}) => {

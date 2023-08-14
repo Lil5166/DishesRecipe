@@ -9,12 +9,11 @@ const RecipeHeader = () => {
             <Toolbar>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item xs={6} sm={4} md={3}>
-                        <Typography variant="h6" className={styles.title}>
-                            <span className={styles.dishesRecipe}>Dishes Recipe</span>
+                        <Typography variant="h6" className={styles.dishesRecipe}>
+                            Dishes Recipe
                         </Typography>
                     </Grid>
-                    <Grid item xs={6} sm={4} md={3}>
-                        <div className={styles.searchContainer}>
+                    <Grid item xs={6} sm={4} md={3} className={styles.searchContainer}>
                             <TextField
                                 className={styles.searchInput}
                                 placeholder="Search..."
@@ -28,7 +27,6 @@ const RecipeHeader = () => {
                                     ),
                                 }}
                             />
-                        </div>
                     </Grid>
                 </Grid>
             </Toolbar>

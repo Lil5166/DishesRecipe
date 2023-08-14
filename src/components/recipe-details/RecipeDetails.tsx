@@ -11,15 +11,7 @@ interface RecipeDetailsProps {
 }
 
 const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
-    const [checkedIngredients, setCheckedIngredients] = useState<string[]>([]);
 
-    const handleIngredientToggle = (ingredient: string) => {
-        if (checkedIngredients.includes(ingredient)) {
-            setCheckedIngredients(prevChecked => prevChecked.filter(item => item !== ingredient));
-        } else {
-            setCheckedIngredients(prevChecked => [...prevChecked, ingredient]);
-        }
-    };
 
     return (
         <Grid container spacing={2} className={styles.container}>
