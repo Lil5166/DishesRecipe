@@ -38,17 +38,17 @@ const RecipeDetails: NextPage<RecipeDetailsProps> = ({ recipe }) => {
             </Grid>
             <Grid item xs={12} className={styles.infoBox}>
                 <Typography variant="body1" className={styles.category}>
-                    Category: {recipe?.strCategory || 'No category'}
+                    Категорії: {recipe?.strCategory || 'No category'}
                 </Typography>
             </Grid>
             <Grid item xs={12} className={styles.infoBox}>
                 <Typography variant="body1" className={styles.instructions}>
-                    Instructions: {recipe?.strInstructions || 'No Instruction'}
+                    Інструкція: {recipe?.strInstructions || 'No Instruction'}
                 </Typography>
             </Grid>
             <Grid item xs={12} className={styles.infoBox}>
                 <Typography variant="body1" className={styles.ingredients}>
-                    Ingredients:
+                    Інградієнти:
                 </Typography>
                 <ul className={styles.ingredientsList}>
                     {recipe?.strIngredient1 && <li>{recipe.strIngredient1}</li>}
